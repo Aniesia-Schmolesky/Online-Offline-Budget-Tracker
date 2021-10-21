@@ -59,5 +59,14 @@ const FILES_TO_CACHE = [
         })
       );
     }
+
+    //added from Stu_Catching_Fetching_Files Activity
+    event.respondWith(
+        caches.open(CACHE_NAME).then(cache => {
+          return cache.match(event.request).then(response => {
+            return response || fetch(event.request);
+          });
+        })
+      );
   });
   
